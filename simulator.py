@@ -36,3 +36,26 @@ class Robot:
         # Forearms drawing
         pygame.draw.line(window, self.color_arms, (self.x - 10, self.y + 20), (self.x - 20, self.y + 40), 8)
         pygame.draw.line(window, self.color_arms, (self.x + 10, self.y + 20), (self.x + 20, self.y + 40), 8)
+
+class Platform:
+
+    platforms = []
+
+    # Function to draw the platform in the pygame window (main.py)
+    def __init__(self, x, y, width, height):
+
+        self.platforms.append(pygame.Rect(x, y, width, height))
+        self.color = (162, 162, 162)  # Color of the platform
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+
+    def draw(self, window):
+        pygame.draw.rect(window, self.color, pygame.Rect(self.x, self.y, self.width, self.height))
+
+    def get_platforms(self):
+        return self.platforms
+
+
+

@@ -1,6 +1,7 @@
 import sys
 import pygame
 from simulator import Robot
+from simulator import Platform
 
 
 # Function to run the simulation of the robot in the pygame window
@@ -11,6 +12,8 @@ def main():
     pygame.display.set_caption("Simulation Robot")
 
     robot = Robot(100, 100)
+
+    platform = Platform(200, 500, 600, 20)
 
     # Loop to run the simulation of the robot in the pygame window
     while True:
@@ -25,6 +28,8 @@ def main():
         window.fill((0, 0, 0))
 
         robot.draw(window)
+
+        platform.draw(window)
 
         pygame.display.flip()
 
