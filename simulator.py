@@ -4,6 +4,8 @@ import pygame
 # Class Robot for the simulation of the robot in the pygame window (main.py)
 class Robot:
     def __init__(self, x, y):
+        self.wheel_y = None
+        self.wheel_x = None
         self.x = x
         self.y = y
         self.color_body = (0, 0, 255)  # Color body of the robot
@@ -12,7 +14,6 @@ class Robot:
         self.color_wheel = [255, 0, 0]  # Color of the wheel
         self.speed = 0.5  # Speed of the robot
         self.wheel_radius = 10  # Radius of the wheel
-
 
     # Function to move the robot in the pygame window (main.py)
     def move(self, keys):
@@ -60,8 +61,16 @@ class Platform:
         self.width = width
         self.height = height
 
+    # Function to draw the platform in the pygame window (main.py)
     def draw(self, window):
         pygame.draw.rect(window, self.color, (self.x, self.y, self.width, self.height))
 
+    # Function to get the platforms in the pygame window (main.py)
     def get_platforms(self):
         return self.platforms
+
+    def collision(self, robot):
+        if self.x <= robot.wheel_x <= self.x + self.width:
+            if self.y <= robot.wheel_y + robot.wheel_radius <= self.y + self.height:
+                return True
+        return False

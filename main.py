@@ -12,7 +12,9 @@ def main():
 
     robot = Robot(100, 100)
 
-    platform = Platform(100, 700, 1000, 20)
+    platform = Platform(100, 600, 1000, 20)
+    platform2 = Platform(100, 400, 1000, 20)
+    platform3 = Platform(100, 200, 1000, 20)
 
     # Loop to run the simulation of the robot in the pygame window
     while True:
@@ -24,11 +26,27 @@ def main():
 
         robot.move(keys)
 
+        if platform.collision(robot) or platform2.collision(robot) or platform3.collision(robot):
+            robot.color_body = (255, 0, 0)
+            robot.color_head = (255, 0, 0)
+            robot.color_arms = (255, 0, 0)
+            robot.color_wheel = (255, 0, 0)
+            robot.x = 100
+            robot.y = 100
+        else:
+            robot.move(keys)
+            robot.color_body = (0, 0, 255)
+            robot.color_head = (255, 0, 0)
+            robot.color_arms = (0, 255, 0)
+            robot.color_wheel = (255, 0, 0)
+
         window.fill((0, 0, 0))
 
         robot.draw(window)
 
         platform.draw(window)
+        platform2.draw(window)
+        platform3.draw(window)
 
         pygame.display.flip()
 
