@@ -1,4 +1,32 @@
 
+# Robot simulation with Pygame
+
+This project is a robot simulation using the Pygame library. It visualizes a robot that can move around the screen and interact with platforms.
+
+## Installation
+
+1. Clone this repository to your computer.
+
+```shell
+git clone https://github.com/votre-utilisateur/robot-platform.git
+```
+
+Assurez-vous d'avoir Python et Pygame installés.
+
+
+```Copy code
+pip install pygame
+```
+
+
+## Utilisation 
+Run the main program main.py to start the robot simulation.
+
+```Copy code
+python main.py
+```
+
+
 ## Fonctionnalités
 
 Move the robot using the arrow keys.
