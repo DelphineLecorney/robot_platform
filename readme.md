@@ -11,7 +11,7 @@ This project is a robot simulation using the Pygame library. It visualizes a rob
 git clone https://github.com/votre-utilisateur/robot-platform.git
 ```
 
-Assurez-vous d'avoir Python et Pygame installés.
+Make sure you have Python and Pygame installed.
 
 
 ```Copy code
@@ -45,6 +45,12 @@ simulator.py: The file containing the Simulator class for managing the simulatio
 ```Copy code
 README.md: This documentation file.
 ```
+## Collision Management
+
+In this robot simulation, I manage collisions between the robot and platforms. When the robot collides with a platform, I perform the following actions:
+
+1. I display the text "Collision" on the screen for two seconds to indicate to the player that a collision has occurred.
+2. The robot is returned to its initial position (coordinates x = 100 and y = 100) to prevent it from getting stuck in the platform.
 
 ## Contributions
 Contributions to this project are welcome ! If you wish to contribute, please open a Pull Request with your modifications.
