@@ -1,5 +1,6 @@
 import sys
 import pygame
+import pygame.font
 from simulator import Robot, Platform
 
 
@@ -16,6 +17,9 @@ def main():
     platform2 = Platform(100, 400, 1000, 20)
     platform3 = Platform(100, 200, 1000, 20)
 
+    # Font to display the text in the pygame window
+    font = pygame.font.Font(None, 100)
+
     # Loop to run the simulation of the robot in the pygame window
     while True:
         for event in pygame.event.get():
@@ -31,18 +35,15 @@ def main():
 
         # If the robot collides with the platform, restore its old coordinates
         if platform.collision(robot) or platform2.collision(robot) or platform3.collision(robot):
-            robot.color_body = (255, 0, 0)
-            robot.color_head = (255, 0, 0)
-            robot.color_arms = (255, 0, 0)
-            robot.color_wheel = (255, 0, 0)
+            collision_text = font.render("Collision", True, (255, 0, 0))
+            text_rect = collision_text.get_rect(center=(width // 2, height // 2))
+            window.blit(collision_text, text_rect)
+            pygame.display.flip()  # Update the pygame window
+            pygame.time.delay(2000)  # Wait 2 seconds
             robot.x = 100
             robot.y = 100
         else:
             robot.move(keys)
-            robot.color_body = (0, 0, 255)
-            robot.color_head = (255, 0, 0)
-            robot.color_arms = (0, 255, 0)
-            robot.color_wheel = (255, 0, 0)
 
         # If the robot goes out of the window, restore its old coordinates
         if not (0 <= robot.x <= width - 40) or not (0 <= robot.y <= height - 60):
