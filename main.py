@@ -24,8 +24,12 @@ def main():
 
         keys = pygame.key.get_pressed()
 
+        # Save the old coordinates of the robot
+        old_x, old_y = robot.x, robot.y
+
         robot.move(keys)
 
+        # If the robot collides with the platform, restore its old coordinates
         if platform.collision(robot) or platform2.collision(robot) or platform3.collision(robot):
             robot.color_body = (255, 0, 0)
             robot.color_head = (255, 0, 0)
@@ -40,14 +44,18 @@ def main():
             robot.color_arms = (0, 255, 0)
             robot.color_wheel = (255, 0, 0)
 
+        # If the robot goes out of the window, restore its old coordinates
+        if not (0 <= robot.x <= width - 40) or not (0 <= robot.y <= height - 60):
+            robot.x, robot.y = old_x, old_y
+
+        # Draw the robot and the platform in the pygame window
         window.fill((0, 0, 0))
-
         robot.draw(window)
-
         platform.draw(window)
         platform2.draw(window)
         platform3.draw(window)
 
+        # Update the pygame window
         pygame.display.flip()
 
 
